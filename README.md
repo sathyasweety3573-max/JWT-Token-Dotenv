@@ -1,69 +1,156 @@
-🔐 JWT Authentication Backend
+# 🔐 JWT Authentication Backend
 
+A simple authentication backend using Node.js, Express, MongoDB, and JWT.
 
-📄 Description
+---
 
-A simple Node.js backend implementing JWT-based authentication with user registration, login, and protected routes using Express and MongoDB.
+## 🚀 Features
+- User Registration
+- User Login
+- JWT Token Authentication
+- Protected Routes
+- Delete User
 
-🛠️ Tech Stack
-🟢 Node.js
-⚡ Express.js
-🍃 MongoDB (Mongoose)
-🔑 JSON Web Token (JWT)
-🔒 bcryptjs
-📁 Project Structure
-JWT-Authendication/
-│
-├── config/
-│   └── db.js
-├── controllers/
-│   └── userController.js
-├── middleware/
-│   └── authMiddleware.js
-├── models/
-│   └── User.js
-├── routes/
-│   └── userRoutes.js
-├── .env
-├── index.js
-├── package.json
-⚙️ Installation
-git clone <repo-url>
-cd JWT-Authendication
+---
+
+## 🛠️ Tech Stack
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Token (JWT)
+- bcryptjs
+- dotenv
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone Repository
+git clone https://github.com/sathyasweety3573-max/JWT-Token-Dotenv.git  
+cd JWT-Token-Dotenv
+
+### 2. Install Dependencies
 npm install
-🔑 Environment Variables
 
-Create a .env file:
+### 3. Create .env File
+PORT=5000  
+MONGO_URI=your_mongodb_url  
+JWT_SECRET=your_secret_key  
 
-PORT=3000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-▶️ Running the App
-npm run dev
+### 4. Run Server
+npm run dev  
+or  
+node server.js  
 
-Server runs at:
+---
 
-http://localhost:3000
-📬 API Endpoints
-👤 Register
-POST /api/users/register
-🔐 Login
-POST /api/users/login
-📄 Get Users (Protected)
-GET /api/users
-❌ Delete User (Protected)
-DELETE /api/users/:id
-🔐 Authentication
+## 🌐 Base URL
+http://localhost:5000
 
-Protected routes require a token in headers:
+---
 
-Authorization: <token>
-✨ Features
-👤 User registration and login
-🔒 Password hashing
-🔑 JWT authentication
-🔐 Protected routes
+## 📌 API Endpoints
 
+### 🔹 1. Register User
+POST /api/auth/register
 
-👨‍💻 Author
+Body:
+{
+  "email": "sathya@gmail.com",
+  "password": "123456"
+}
+
+Response:
+{
+  "msg": "User registered successfully"
+}
+
+---
+
+### 🔹 2. Login User
+POST /api/auth/login
+
+Body:
+{
+  "email": "sathya@gmail.com",
+  "password": "123456"
+}
+
+Response:
+{
+  "token": "your_jwt_token"
+}
+
+---
+
+### 🔹 3. Get Profile (Protected)
+GET /api/auth/profile
+
+Headers:
+Authorization: Bearer your_jwt_token
+
+Response:
+{
+  "user": {
+    "id": "user_id",
+    "email": "sathya@gmail.com"
+  }
+}
+
+---
+
+### 🔹 4. Delete User
+DELETE /api/auth/delete
+
+Headers:
+Authorization: Bearer your_jwt_token
+
+Response:
+{
+  "msg": "User deleted successfully"
+}
+
+---
+
+## 🧪 Postman Testing
+
+### ✅ Step 1: Register
+POST http://localhost:5000/api/auth/register  
+Body → raw → JSON
+
+### ✅ Step 2: Login
+POST http://localhost:5000/api/auth/login  
+Copy token from response
+
+### ✅ Step 3: Set Token
+Headers:
+Authorization: Bearer <your_token>
+
+OR  
+Postman → Authorization → Bearer Token → paste token
+
+### ✅ Step 4: Access Profile
+GET http://localhost:5000/api/auth/profile
+
+### ✅ Step 5: Delete User
+DELETE http://localhost:5000/api/auth/delete
+
+---
+
+---
+
+## 🧠 JWT Flow
+1. User logs in  
+2. Server generates token  
+3. Client stores token  
+4. Token sent in headers  
+5. Server verifies token  
+
+---
+
+## 👨‍💻 Author
 Sathya
+
+---
+
