@@ -63,6 +63,7 @@ Authorization: <token>
 🔒 Password hashing
 🔑 JWT authentication
 🔐 Protected routes
-👨‍💻 Author
 
+
+👨‍💻 Author
 Sathya
