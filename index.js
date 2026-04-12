@@ -1,26 +1,29 @@
 const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
-
-const connectDB = require("./config/db");
-const userRoutes = require("./routes/userRoutes");
-
-dotenv.config();
-connectDB();
-
 const app = express();
 
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+//  correct import
+const userRoutes = require("./routes/userRoutes");
+
+//  middleware
 app.use(express.json());
-app.use(cors());
 
-app.use("/api/users", userRoutes);
-
+//  DEBUG ROUTE (IMPORTANT)
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  res.send("Server Working");
 });
 
-const PORT = process.env.PORT || 3000;
+//  connect routes
+app.use("/api/user", userRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+// DB connect
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("MongoDB connected ✔"))
+  .catch((err) => console.log(err));
+
+// server
+app.listen(3000, () => {
+  console.log("Server running on 3000");
 });
